@@ -25,12 +25,22 @@ var auth = firebase.auth()
 var emailText = $('#exampleInputEmail1');
 var passText = $('#exampleInputPassword1');
 var formSubmit = $('#submitBtn');
+var loginSubmit = $('#loginBtn');
 
+// registering user
 formSubmit.on('click', function(){
     event.preventDefault();
     var email = emailText.val();
     var password = passText.val();
     console.log('LOL');
     auth.createUserWithEmailAndPassword(email, password);
-    
 });
+
+// login users
+loginSubmit.on('click', function(){
+    var email = emailText.val();
+    var password = passText.val();
+    var promise = auth.signInWithEmailAndPassword(email, password)
+    promise.then(function(user){console.log(user)});
+})
+
