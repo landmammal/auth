@@ -1,3 +1,16 @@
+// firebase authentication methods
+// - createUserWithEmailAndPassword(email, pass);
+// - signInWithEmailAndPassword(email, pass);
+// - signOut()
+// - onAuthStateChange(function(user){});
+
+// Your web app's Firebase configuration
+var firebaseConfig = {
+    // your keys here
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
 
 var emailText = $('#exampleInputEmail1');
 var passText = $('#exampleInputPassword1');
