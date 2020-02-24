@@ -2,7 +2,7 @@
 // - createUserWithEmailAndPassword(email, pass);
 // - signInWithEmailAndPassword(email, pass);
 // - signOut()
-// - onAuthStateChange(function(user){});
+// - onAuthStateChanged(function(user){});
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
@@ -34,13 +34,34 @@ formSubmit.on('click', function(){
     var password = passText.val();
     console.log('LOL');
     auth.createUserWithEmailAndPassword(email, password);
+    formSubmit.hide();
+    loginSubmit.hide();
 });
 
 // login users
 loginSubmit.on('click', function(){
     var email = emailText.val();
     var password = passText.val();
-    var promise = auth.signInWithEmailAndPassword(email, password)
-    promise.then(function(user){console.log(user)});
-})
+    auth.signInWithEmailAndPassword(email, password)
+    formSubmit.hide();
+    loginSubmit.hide();
+});
+
+// logout user
+$('#logoutBtn').on('click', function(){
+    auth.signOut();
+    $('#logoutBtn').hide();
+    formSubmit.show();
+    loginSubmit.show();
+});
+
+auth.onAuthStateChanged(function(user){
+    if(user){
+        console.log(user);
+    }else {
+        console.log("You need to sign in or create an account");
+    }
+});
+
+
 
